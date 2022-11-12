@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	
+	<!-- 서블릿 컨테이너 구동 -->
+	
+	<!-- 서블릿 컨테이너가 구동되면서 아래의 설정 파일을 읽어서 스프링 컨테이너를 구동 -->
+	<!-- 스프링 컨테이너의 구동은 순차적으로 진행 -->
+	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+	
+	<!-- 스프링 부모 컨테이너 설정 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring/root-context.xml</param-value>
+	</context-param>
+	
+	<!-- Creates the Spring Container shared by all Servlets and Filters -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- Processes application requests -->
+	<!-- 스프링 자식 컨테이너 구동 -->
+	<!-- 스프링에서 컨트롤러 객체들은 HttpServlet 클래스 상속 -->
+	<servlet>
+		<servlet-name>appServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+		
+	<servlet-mapping>
+		<servlet-name>appServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 요청 시 CharacterEncoding 설정 -->
+	<!-- 화면에서 Controller로 데이터를 넘길 때 한글 깨짐 방지 -->
+	<filter>
+		<filter-name>characterEncoding</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<!-- 생성자 호출 시 전달할 매개변수 -->
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	
+	
+		<!-- filter 사용 매핑 -->
+		<filter-mapping>
+			<filter-name>characterEncoding</filter-name>
+			<url-pattern>/</url-pattern>
+		</filter-mapping>
+	</filter>
+</web-app>

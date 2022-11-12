@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- doctype mapper로 설정 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- mapper namespace 지정 -->
+<!-- 기존 JDBC 프로그래밍에서 DAO 클래스에 쿼리를 작성함 -->
+<!-- DAO에서 쿼리가 분리되었기 때문에 DAO클래스 이름을 따라감 -->
+<mapper namespace="BoardDAO">
+	<!-- 쿼리 작성 영역 --> 
+	<insert id="insertBoard" parameterType="board">
+	<![CDATA[
+		INSERT INTO T_BOARD (
+			BOARD_SEQ,
+			BOARD_TITLE,
+			BOARD_CONTENT,
+			BOARD_WRITER,
+			BOARD_REGDATE,
+			BOARD_MDFDATE
+		) VALUES (
+			(
+				SELECT IFNULL(MAX(A.BOARD_SEQ), 0) + 1
+					FROM T_BOARD A
+			),
+			#{boardTitle},
+			#{boardContent},
+			#{boardWriter},
+			NOW(),
+			NOW()
+		)
+	]]>
+	</insert>
+	
+	<select id="getBoardList" resultType="board">
+	<![CDATA[
+		SELECT *
+			FROM T_BOARD
+	]]>
+	</select>
+	
+	<select id="getBoard" parameterType="int" resultType="board">
+	<![CDATA[
+		SELECT *
+			FROM T_BOARD
+			WHERE BOARD_SEQ = #{boardSeq}
+	]]>
+	</select>
+	
+	<update id="updateBoardCnt" parameterType="int">
+	<![CDATA[
+		UPDATE T_BOARD
+			SET BOARD_CNT = (
+								SELECT B.CNT
+									FROM (
+											SELECT A.BOARD_CNT + 1 AS CNT
+												FROM T_BOARD A
+												WHERE BOARD_SEQ = #{boardSeq}
+										 ) B
+							 )
+			WHERE BOARD_SEQ = #{boardSeq}
+	]]>
+	</update>
+</mapper>

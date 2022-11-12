@@ -1,0 +1,41 @@
+1. 컴트롤로에서 화면으로 전송되는 데이터의 유효범위(스코프)
+    - Application Scope: 웹 어플리케이션이 구동되는 동안 유효한 데이터를 생성
+    - Session Scope: 세션은 사용자가 웹 페이지에 접속 시 자동으로 생성
+                     WAS에 설정된 시단동안 웹페이지에서 동작이 없을 시에 자동 소멸
+                     동작이 계속 취해지면 설정된 시간이 계속 유지
+                     세션 유효범위는 세선이 유지되는 동안 데이터를 생성
+                     HttpSesion 객체를 생성하여 설정(로그인 정보등을 담아서 여러 페이지나 Request에서 사용가능)
+    - Request Scope: 하나의 요청이 실행되는 동안에만 유효한 데이터를 생성
+                     요청 처리가 완료되면 사라진다.
+                     Model 객체를 이용하여 설정할 수 있다.
+    - 스코프 범위: Application Scope > Session Scope > Request Scope
+
+2. el 표기법과 jstl
+    - el(Expression Language): 기존 JSP에서는 자바코드나 자바변수를 사용할 때
+                               <%= 변수 %> 다음과 같이 사용했다.
+                               el 표기법은 자바코드나 자바변수를 ${변수} 식으로 축약하여 사용할 수 있도록 설정해준다.
+    - jstl: 자바변수를 이용할 때 조건이나 반복문을 사용할 수 있도록 해주는 라이브러리
+            예를 들어 로그인됐을 때는 마이페이지를 보여줘야되는 경우
+            로그인되지 않았을 때는 로그인페이지를 보여줘야되는 경우에
+            <c:id></C:if> jstl 태그를 이용하여 표시
+
+3. 스프링과 ORM 프레임워크
+    - ORM 프레임워크가 등장하기 전에는 JDBC 프로그래밍을 통해서 DB연동을 함
+    - JDBC 프로그래밍은 DB 연결 클래스를 따로 작성해야하고, 쿼리문도 자바 클래스로 작성해야하여 매우 불편했다.
+    - ORM 프레임워크가 등장하면서 DB 연결 설정이나 쿼리문이 클래스에서 분리되어 편하게 사용할 수 있게 됨
+    - ORM 프레임워크: ORM(Object Relation Mapping) 객체와 DB의 테이블을 매핑하여 사용하는 프레임워크
+                     DB 연결, 쿼리문을 클래스에서 분리된 파일에 작성한다.
+                     Mybatis, iBatis, Hibernate 등이 있다.
+
+4. MVC 패턴
+    - MVC(Model View Controller)
+      Model: DB와 연동되는 객체(Service, ServiceImlp, DAO, mapper)
+      Controller: View와 Model을 연결하는 객체(Controller)
+      View: 사용자에게 표출될 화면(JSP)
+    - View에서 사용자가 뭔가 동작을 취하면 Controller가 사용자 요청을 받아서 처리를 진행
+      Controller에서 Model객체의 함수를 호출하여 DB 데이터를 받아오거나 DB데이터의 조작을 한다.
+    -    -----------요청---------->          -----------함수호출----------->     -----------쿼리----------->
+     View                          Controller                              Model                           DB
+         <----------응답-----------          <-----------결과리턴-----------     <---------쿼리결과---------
+    - Model의 호출 순서
+      Service -> ServiceImpl -> DAO -> Mapper

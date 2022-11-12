@@ -1,0 +1,431 @@
+@charset "UTF-8";
+/*support.html*/
+/*메뉴부분*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+main>.title{
+    margin-top: 30px;
+    color: rgb(57, 57, 57);
+    text-align: center;   
+    font-size: 35px;
+}
+
+main .menu-bar{
+    width: 95%;
+    margin: 30px auto 50px;
+    height: 100px;
+    background-color: rgb(251, 251, 251);
+    border: 2px solid rgb(235, 235, 235);
+    border-radius: 10px;
+}
+
+main .nav{
+    margin-top: 25px;
+    padding: 0 2px;
+    align-items: center;
+}
+
+main .nav-item{
+    margin: auto 4px;
+}
+
+main .nav-link{
+    padding: 8px 0;
+    font-size:23px;
+    color: gray;
+}
+main .menu-bar .nav img{
+    height: 15px;
+    width: 1pt;
+    opacity: 0.5;
+
+}
+main .nav-link:hover, main .nav-link:focus, main .active {
+    font-weight: 600;
+    color: rgb(18, 100, 100);
+}
+
+/*내용부분*/
+/*support.html*/
+
+main article{
+    position: relative;;
+    width: 95%;
+    margin: 20px auto 50px;
+    background-color: rgb(251, 251, 251);
+    border: 2px solid rgb(235, 235, 235);
+    border-radius: 10px;
+}
+
+main .search{
+    margin: 30px auto 0px;
+    width: 300px;
+}
+
+main #write-btn{
+    position: absolute;
+    bottom: 16px;
+    right: 5%;
+}
+
+main .search .form-control:focus {    
+        border-color: rgb(18 100 100 / 25%);
+        box-shadow: 0 0 0 0.1rem rgb(18 100 100 / 25%);
+}
+main .search .btn-success{
+    --bs-btn-color: rgb(255, 255, 255);
+    --bs-btn-bg: rgb(18, 100, 100);
+    --bs-btn-border-color: rgb(18, 100, 100);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: rgba(18, 100, 100,0.9);
+    --bs-btn-hover-border-color: rgb(18, 100, 100);
+    --bs-btn-focus-shadow-rgb:  none;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: rgba(18, 100, 100,1);
+    --bs-btn-active-border-color: rgb(18, 100, 100);
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: rgb(18, 100, 100);
+
+}
+
+#write-btn{
+    --bs-btn-color: rgb(255, 255, 255);
+    --bs-btn-bg: rgb(18, 100, 100);
+    --bs-btn-border-color: rgb(18, 100, 100);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: rgba(18, 100, 100,0.9);
+    --bs-btn-hover-border-color: rgb(18, 100, 100);
+    --bs-btn-focus-shadow-rgb:  none;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: rgba(18, 100, 100,1);
+    --bs-btn-active-border-color: rgb(18, 100, 100);
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: rgb(18, 100, 100);
+}
+main .accordion-item:first-of-type{
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+main .accordion{
+    margin: 30px auto;
+    width: 90%;
+    --bs-accordion-btn-focus-box-shadow: none;
+    --bs-accordion-btn-active-icon:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='rgb(18,100,100)'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+    --bs-accordion-active-color: black;
+    --bs-accordion-active-bg: rgba(18, 100, 100, .05);
+    --bs-accordion-border-radius: 7px;
+    --bs-accordion-inner-border-radius: calc(8px - 1px);
+}
+main .accordion-body{
+    padding-left: 25px;
+}
+main .accordion .accordion-button{
+    font-size: 16px;
+}
+main .pagination{
+    --bs-pagination-color: rgb(18, 100, 100);
+    --bs-pagination-active-bg: rgb(18, 100, 100);
+    --bs-pagination-active-border-color: #ffffff;
+    --bs-pagination-focus-box-shadow: none;
+    --bs-pagination-focus-color: rgb(18, 100, 100);
+    --bs-pagination-hover-color: rgb(18, 100, 100);
+    --bs-pagination-disabled-color: #c9c9c9;
+}
+
+main .table{
+    margin: 30px auto;
+    width: 90%;
+}
+main .notice-table{
+    text-align: center;
+    table-layout: fixed;
+    white-space:nowrap;
+}
+main .notice-table thead{
+  border-top: 1px solid rgb(18,100,100);
+}
+
+main .notice-table th, main .notice-table td{
+    padding-left: 0;
+    padding-right: 0;
+}
+main .notice-table .notice-type{
+    width: 70px;
+}
+main .notice-table .notice-title{
+    width: 75%;
+}
+main .notice-table .notice-view{
+    width: 50px;
+}
+main .notice-table .notice-date{
+    width: 70px;
+}
+main .notice-table td.notice-title{
+    text-align: left;
+    padding-left: 5px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+main .notice-table .notice-title a{
+    text-decoration: none;
+    color: var(--bs-table-color);
+}
+/*support.html 끝*/
+/*login.html*/
+
+.login-form fieldset{
+    color: rgb(63, 63, 63);
+    font-family: 'Noto Sans KR';
+    font-size: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 400px;
+    height: 330px;
+    border: 1px solid rgb(18, 100, 100);;
+    border-radius: 10px;
+    margin: 20px auto 15%;
+    padding: 50px 60px;
+    justify-content: space-between;
+    align-content: flex-start;
+}
+.login-logo{
+    display: block;
+    width: 225px;
+    margin: 0 auto 0;
+}
+.login-info{
+    display: inline-block;
+    height: 66px;
+}
+.login-form ul{
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+.login-form li{
+   margin-bottom: 6px;
+}
+.login-form ul input{
+    color: rgb(205, 205, 205);
+    height: 30px;
+    width: 200px;
+    padding: 6px 10px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+    box-sizing: border-box;
+    resize: none;
+    font-size: 12px;
+}
+.login-btn{
+    display: inline-block;
+}
+.login-form .login-btn input{
+    height: 66px;
+    width: 70px;
+    background: rgb(18, 100, 100);
+    color: white;
+    border-radius: 4px;
+    font-size: 15px;
+
+}
+.login-form .auto-login{
+    margin-top: 5px;
+    display: flex;
+    height: 25px;
+    align-items:center;
+    width: 100%;
+}
+.login-form .auto-login .form-check{
+    margin: 0 0 0 10px;
+    height: 25px;
+}
+.login-form .auto-login .form-check input{
+    height: 18px;
+    width: 30px;
+}
+.form-check-input:checked {
+    background-color: rgb(18, 100, 100);
+    border-color: rgb(18, 100, 100);
+}
+.form-switch .form-check-input:focus  {
+    border-color: rgb(18, 100, 100);
+    outline: 0;
+    box-shadow: 0 0 0 0.1rem rgb(18 100 100 / 25%);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba(18, 100, 100, 0.25)'/%3e%3c/svg%3e");
+}
+.form-switch .form-check-input:checked {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+}
+.login-form a{
+    color: rgb(63, 63, 63);
+    text-decoration: none;
+}
+.login-form a:hover, .login-form a:focus{
+    text-decoration: underline;
+}
+
+#link-register{
+    margin-right: 10%;
+}
+#link-findinfo{
+    margin-left: auto;
+    text-align: end;
+}
+
+.login-form button{
+    font-size: 14px;
+    width: 100%;
+    height: 35px;
+    margin-top: 2px;
+    border-radius: 4px;
+    border: 0.5px solid #ccc;
+}
+#login-byNaver{
+    background-color: rgb(0, 203, 0);
+}
+#login-byNaver:hover{
+    background-color: rgb(0, 163, 51);
+    border-color: rgb(0, 156, 49);
+}
+#login-byKakao{
+    color: rgb(54, 54, 54);
+    background-color: rgb(255, 234, 0);
+}
+#login-byKakao:hover{
+    background-color: rgb(241, 217, 0);
+
+}
+
+#login-byGoogle{
+    color: rgb(54, 54, 54);
+}
+#login-byGoogle:hover{
+    background-color: rgb(239, 239, 239);
+    border-color: #ccc;
+}
+.qnaTitle{
+    width: 90%;
+}
+.qnaDate{
+    width: 90px;
+    margin-right: 5px;
+}
+/*login.html 끝*/
+/*register.html*/
+.register-form fieldset{
+    color: rgb(63, 63, 63);
+    font-family: 'Noto Sans KR';
+    font-size: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 550px;
+    height: 550px;
+    border: 1px solid rgb(18, 100, 100);;
+    border-radius: 10px;
+    margin: 20px auto 15%;
+    padding: 20px 60px;
+    justify-content: space-between;
+    align-content: flex-start;
+}
+.register-form fieldset legend{
+  float: none;
+  width: 160px;
+  text-align: center;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.register-form fieldset ul{
+    width: 100%;
+    list-style-type: none;
+
+}
+
+.register-form fieldset ul li{
+    width: 100%;
+    display: inline-flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.register-form fieldset ul li label{
+    text-align: end;
+    width: 90px;
+    margin-right: 20px;
+}
+
+.register-form fieldset ul input{
+    color: rgb(63, 63, 63);
+    width: 245px;
+    height: 30px;
+    padding: 6px 10px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+    box-sizing: border-box;
+    resize: none;
+    font-size: 12px;
+}
+.register-form input[type='button']{
+    height: 30px;
+    border-color: rgb(18, 88, 88);
+    background: rgb(18, 100, 100);
+    color: white;
+    border-radius: 4px;
+    padding: 0%;
+    font-size: 12px;
+    margin-left: 5px;
+    box-shadow:none;
+
+}
+.register-form #reg-input-id{
+    width: 180px;
+}
+.register-form #reg-input-id-btn{
+    width: 60px;
+}
+.register-form #reg-input-pwchk{
+    width: 155px;
+    
+}
+.register-form #reg-input-telchk{
+    width: 155px;
+    
+}
+/*input 타입 number의 화살표 없애기*/
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+/**/
+.register-form #reg-input-telchk-btn{
+    width: 85px;
+}
+.register-form #reg-input-add{
+    width: 180px;
+}
+.register-form #reg-input-add-btn{
+    width: 60px;
+}
+#go-back-btn{
+    width: 88px;
+    background: rgb(245, 245, 245);
+    color: rgb(63, 63, 63);
+    border-color: rgb(220, 220, 220);
+}
+#regist-sybmit-btn{
+    width: 88px;
+    margin-left: 6px;
+    border-color: rgb(18, 88, 88);
+    background: rgb(18, 100, 100);
+    color: white;
+    border-radius: 4px;
+    padding: 0%;
+    font-size: 12px;
+    margin-left: 5px;
+}   

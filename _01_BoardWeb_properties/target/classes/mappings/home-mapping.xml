@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- doctype mapper로 설정 -->
+<!DOCTYPE mapper
+	PUBLIC "-//mtbatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<!-- mapper namespace 지정 -->
+<!-- 기존 JDBC 프로그래밍에서는 DAO 클래스에 쿼리를 작성함 -->
+<!-- DAO에서 쿼리가 분리되었기 때문에 DAO클래스 이름을 따라감 -->
+<mapper namespace="HomeDAO">
+	<!-- 쿼리 작성 -->
+
+	<!-- 
+	<select id=""></select>
+	<insert id=""></insert>	
+	<update id=""></update>
+	<delete id=""></delete> 
+	-->
+	
+	<!-- where절에 부등호를 사용할 때 xml에서는 태그로 인식
+	<![CDATA[]]>감싸줘서 부등호로 인식시켜줌  -->
+	<!-- mapper에는 절대로 세미콜론을 찍지않는다. -->
+	<select id="getNameList" resultType="home">
+	<![CDATA[
+		SELECT *
+			FROM T_NAME
+	]]>
+	</select>
+	
+	<!-- mybatis에서 파라민터를 꺼내는 방식 #{파라미터키} -->
+	<insert id="insertName" parameterType="home">
+	<![CDATA[
+		INSERT INTO T_NAME(
+			FIRST_NAME,
+			LAST_NAME
+		) VALUES (
+			#{firstName},
+			#{lastName}
+		)
+		
+	]]>	
+	</insert>
+	
+	<update id="updateName" parameterType="java.util.Map">
+	<![CDATA[
+		UPDATE T_NAME
+			SET FIRST_NAME = #{firstName},
+			    LAST_NAME = #{lastName}
+		    WHERE FIRST_NAME = #{originalFirstName}
+		      AND LAST_NAME = #{originalLastName}
+	]]>	
+	</update>
+
+	<delete id="deleteName" parameterType="home">
+	<![CDATA[
+		DELETE FROM T_NAME
+			WHERE FIRST_NAME = #{firstName}
+			  AND LAST_NAME = #{lastName}
+			
+	]]>	
+	</delete>
+</mapper>

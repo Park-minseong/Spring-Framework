@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 어노테이션을 읽어서 모델 객체들을 생성 -->
+	<!-- 만약에 모델객체들을 생성하지 않고 컨트롤로에서 모델객체를 의존성 주입할 경우 모델객체를 찾지못해서 에러가 발생한다. -->
+		
+	<context:component-scan base-package="com.spring.boardweb.service" />
+	
+	<!-- DB 연동 설정 -->
+	<!-- DataSource 객체 생성 -->
+	<!-- DB 연동을 부모컨테이너에 하는 이유는 부모 컨테이너에서 생성하는 객체들이 모델 객체들이기 때문 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/studydb?serverTimezone=UTC"></property>
+		<property name="username" value="study"></property>
+		<property name="password" value="!dkdlxl1234"></property>
+	</bean>	
+	
+	<!-- DB 연결 세션관리 객체 생성 -->
+	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- MyBatis 설정파일 등록 -->
+		<property name="configLocation" value="classpath:sql-map-config.xml"></property>
+	</bean>
+	
+	<!-- SqlSessionTemplate 객체 생성 -->
+	<!-- SessionFactory에서 Session을 하나씩 꺼내서 쓰는 객체 -->
+	<bean class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sessionFactory"></constructor-arg>
+	</bean>
+	
+	<!-- Transactions 설정(AOP) -->
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<!-- Transaction Advice 등록 -->
+	<!-- Transaction이 언제 호출될지 설정 -->
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<!-- Transaction이 실행될 메소드 지정 -->
+		<tx:attributes>
+			<tx:method name="get*" read-only="true"/>
+			<tx:method name="*"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- AOP로 Transaction이 실행될 클래스 지정-->
+	<aop:config>
+	<!-- 어떤 클래스에서 실행될지 설정 -->
+		<aop:pointcut expression="execution(* com.spring.boardweb.service..*.*(..))" id="txPointcut"/>
+		
+		<aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice"/>
+	</aop:config>
+	
+</beans>

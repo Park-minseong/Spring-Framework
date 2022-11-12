@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- doctype mapper로 설정 -->
+<!DOCTYPE mapper
+	PUBLIC "-//mtbatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<!-- mapper namespace 지정 -->
+<!-- 기존 JDBC 프로그래밍에서는 DAO 클래스에 쿼리를 작성함 -->
+<!-- DAO에서 쿼리가 분리되었기 때문에 DAO클래스 이름을 따라감 -->
+<mapper namespace="BoardDAO">
+	
+</mapper>

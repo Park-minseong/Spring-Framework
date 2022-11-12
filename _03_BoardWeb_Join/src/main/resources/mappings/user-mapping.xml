@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- doctype mapper로 설정 -->
+<!DOCTYPE mapper
+	PUBLIC "-//mtbatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<!-- mapper namespace 지정 -->
+<!-- 기존 JDBC 프로그래밍에서는 DAO 클래스에 쿼리를 작성함 -->
+<!-- DAO에서 쿼리가 분리되었기 때문에 DAO클래스 이름을 따라감 -->
+<mapper namespace="UserDAO">
+
+	<insert id="join" parameterType="user">
+		<![CDATA[
+			INSERT INTO T_USER(
+				USER_ID,
+				USER_PW,
+				USER_NM,
+				USER_MAIL,
+				USER_TEL
+			) VALUES (
+				#{userId},
+				#{userPw},
+				#{userNm},
+				#{userMail},
+				#{userTel}
+			)
+		]]>
+	</insert>
+	
+	<select id="idCheck" parameterType="String" resultType="int">
+	<![CDATA[
+		SELECT COUNT(*)
+			FROM T_USER
+			WHERE USER_ID = #{userId}
+	]]>
+	</select>
+	
+	<insert id="join2" parameterType="user">
+		<![CDATA[
+			INSERT INTO P_USER(
+				USER_ID,
+				USER_PW,
+				USER_NM,
+				USER_MAIL,
+				USER_TEL,
+				USER_ADD,
+				USER_ADD_DETAIL,
+				USER_BNK
+			) VALUES (
+				#{userId},
+				#{userPw},
+				#{userNm},
+				#{userMail},
+				#{userTel},
+				#{userAdd},
+				#{userAddDetail},
+				#{userBnk}
+			)
+		]]>
+		
+			
+	</insert>
+	
+	<select id="idCheck2" parameterType="String" resultType="int">
+	<![CDATA[
+		SELECT COUNT(*)
+			FROM P_USER
+			WHERE USER_ID = #{userId}
+	]]>
+	</select>
+	
+</mapper>
